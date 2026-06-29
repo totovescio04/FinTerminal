@@ -1,0 +1,11 @@
+export { PortfolioOptimizer } from "./portfolio-optimizer";
+export { OptimizationPanel } from "./optimization-panel";
+export { OptimizationResults } from "./optimization-results";
+export { OptimizationSummary } from "./optimization-summary";
+export { EfficientFrontierChart } from "./efficient-frontier-chart";
+export { MonteCarloChart } from "./monte-carlo-chart";
+export { RiskReturnChart } from "./risk-return-chart";
+export { AllocationChart } from "./allocation-chart";
+export { CorrelationHeatmap } from "./correlation-heatmap";
+export { useOptimizationInputs } from "./use-optimization-inputs";
+export type { OptAsset, OptimizationInputs } from "./use-optimization-inputs";
