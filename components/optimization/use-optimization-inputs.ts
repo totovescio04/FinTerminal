@@ -60,9 +60,16 @@ export function useOptimizationInputs(): OptimizationInputs {
       currency: i.risk.currency,
       sector: i.risk.sector,
     }));
+    console.log(assets);
+    console.log(instruments);
     const mu = assets.map((a) => a.yield);
     const vols = assets.map((a) => a.modifiedDuration * YIELD_VOL_ANNUAL);
     const corr = assets.map((a) => assets.map((b) => correlation(a, b)));
+    
+    console.log("assets", assets);
+    console.log("vols", vols);
+    console.log("corr", corr);
+
     const Sigma = covFromVolCorr(vols, corr);
     const totalMarketValue = assets.reduce((s, a) => s + a.marketValue, 0);
     const currentWeights = assets.map((a) => (totalMarketValue === 0 ? 0 : a.marketValue / totalMarketValue));

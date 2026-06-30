@@ -40,7 +40,17 @@ export function useRiskBook(): { instruments: RiskInstrument[]; loading: boolean
   const instruments = useMemo<RiskInstrument[]>(() => {
     const byTicker = new Map(records.map((r) => [r.ticker.toLowerCase(), r]));
     return positions.map((pos) => {
-      const a = analyzePosition(pos);
+      let a;
+
+try {
+  a = analyzePosition(pos);
+} catch (err) {
+  console.log("================================");
+  console.log("ERROR ANALIZANDO POSICIÓN");
+  console.log(pos);
+  console.error(err);
+  throw err;
+}
       const rec = byTicker.get(pos.ticker.toLowerCase());
       const couponType: CouponType = rec?.couponType ?? (pos.couponRate === 0 ? "Zero" : "Fixed");
       const remainingYears = (new Date(pos.maturityDate).getTime() - new Date(pos.settlementDate).getTime()) / YEAR_MS;

@@ -102,7 +102,7 @@ export function useBondAnalytics(values: BondFormValues, mode: PriceMode): BondA
     } catch (error) {
       return { ok: false, error: error instanceof Error ? error.message : "Invalid bond inputs." };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [
     values.faceValue,
     values.couponRate,

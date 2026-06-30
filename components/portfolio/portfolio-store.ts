@@ -93,11 +93,17 @@ function subscribe(listener: () => void): () => void {
   };
 }
 
+const EMPTY_POSITIONS: Position[] = [];
+
+function getServerSnapshot(): Position[] {
+  return EMPTY_POSITIONS;
+}
+
 function getSnapshot(): Position[] {
   return state;
 }
 
 /** Subscribe a component to the portfolio positions. */
 export function usePortfolio(): Position[] {
-  return useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

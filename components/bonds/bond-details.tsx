@@ -9,7 +9,6 @@ import { SectionCard } from "@/components/shared/section-card";
 import { EmptyState } from "@/components/shared/empty-state";
 import { LoadingState } from "@/components/shared/loading-state";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { MetricCard, useBondAnalytics, DEFAULT_BOND_FORM } from "@/components/fixed-income";
 import { CashFlowViewer, PriceYieldChart } from "@/components/cash-flow";
 import { buildPriceYieldSeries } from "@/components/cash-flow/analytics-series";
@@ -23,7 +22,6 @@ import { toggleWatch, useWatchlist } from "./watchlist-store";
 import { BondOverview } from "./bond-overview";
 import { IssuerCard } from "./issuer-card";
 import { RatingBadge } from "./rating-badge";
-
 interface BondDetailsProps {
   id: string;
 }

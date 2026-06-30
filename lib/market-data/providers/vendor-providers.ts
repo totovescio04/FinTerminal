@@ -15,7 +15,7 @@ abstract class VendorProvider extends BaseMarketDataProvider {
     this.apiKey = apiKey;
   }
   /** Unavailable until configured with credentials. */
-  async isAvailable(): Promise<boolean> {
+  override async isAvailable(): Promise<boolean> {
     return Boolean(this.apiKey);
   }
 }

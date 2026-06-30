@@ -30,7 +30,6 @@ export function covarianceMatrix(returns: number[][]): number[][] {
 
 /** Correlation matrix from a covariance matrix. */
 export function correlationMatrix(cov: number[][]): number[][] {
-  const n = cov.length;
   const sd = cov.map((row, i) => Math.sqrt(row[i]!));
   return cov.map((row, i) =>
     row.map((v, j) => {

@@ -18,7 +18,7 @@ export class ManualProvider extends BaseMarketDataProvider {
     this.quotes.set(quote.symbol, { ...quote, source: this.id });
   }
 
-  async isAvailable(): Promise<boolean> {
+  override async isAvailable(): Promise<boolean> {
     return this.quotes.size > 0;
   }
 

@@ -11,18 +11,14 @@ import type { PositionAnalytics } from "@/components/portfolio";
 import {
   STRESS_SCENARIOS,
   aggregateRisk,
-  parametricVaR,
   riskContributions,
   riskHeatmap,
   stressShiftBps,
-  topRisks,
   type ScenarioPoint,
   type StressResult,
 } from "@/lib/risk";
 import { useRiskBook } from "./use-risk-book";
 import { RiskKPICards } from "./risk-kpi-cards";
-import { RiskSummary } from "./risk-summary";
-import { VaRPanel } from "./var-panel";
 import { PortfolioExposure } from "./portfolio-exposure";
 import { ScenarioRunner } from "./scenario-runner";
 import { StressTestingPanel } from "./stress-testing-panel";
@@ -59,10 +55,7 @@ export function RiskDashboard() {
   const positions = useMemo(() => instruments.map((i) => i.risk), [instruments]);
   const agg = useMemo(() => aggregateRisk(positions), [positions]);
 
-  const [shift, setShift] = useState(0);
-  const [confidence, setConfidence] = useState(95);
-  const [horizonDays, setHorizonDays] = useState(1);
-  const [vol, setVol] = useState(6.5);
+  const [shift, setShift] = useState (0);
 
   const scenarioPoints = useMemo<ScenarioPoint[]>(() => {
     const mv = agg.marketValue;
@@ -80,14 +73,8 @@ export function RiskDashboard() {
     });
   }, [instruments, agg.marketValue]);
 
-  const varResult = useMemo(
-    () => parametricVaR({ dv01Currency: agg.dv01, dailyYieldVolBp: vol, confidence, horizonDays }),
-    [agg.dv01, vol, confidence, horizonDays],
-  );
-
   const contributions = useMemo(() => riskContributions(positions), [positions]);
   const heatmap = useMemo(() => riskHeatmap(positions), [positions]);
-  const top = useMemo(() => topRisks(positions), [positions]);
 
   return (
     <div className="space-y-6">
@@ -109,9 +96,9 @@ export function RiskDashboard() {
         <>
           <RiskKPICards agg={agg} />
 
-          <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
+          {/* <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
             <div className="xl:col-span-2">
-              <RiskSummary top={top} />
+              {<RiskSummary top={top} />}
             </div>
             <VaRPanel
               confidence={confidence}
@@ -122,7 +109,7 @@ export function RiskDashboard() {
               onVol={setVol}
               result={varResult}
             />
-          </div>
+          </div> */}
 
           <PortfolioExposure positions={positions} />
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { MetricCard } from "@/components/fixed-income";
-import { formatCurrency, formatNumber } from "@/lib/utils/format";
+import { formatNumber } from "@/lib/utils/format";
 
 /** Engine-derived risk figures at the base yield. */
 export interface RiskSummaryData {
