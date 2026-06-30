@@ -2,10 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  webpack: (config) => {
-    config.optimization.minimize = false;
-    return config;
-  },
 };
 
 export default nextConfig;
